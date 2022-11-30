@@ -7,8 +7,8 @@ function render() {
     ReactDOM.render(
       <div>
         {/* <Rotas/> */}
-        {/* <Cadastro/> */}
-        <Caixa/>
+        <Cadastro/>
+        {/* <Caixa/> */}
       </div>, document.getElementById('root')!);
   }
   

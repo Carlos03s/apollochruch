@@ -7,6 +7,7 @@ Apollo Church - projeto para igrejas, com funcionalidades de administração, do
 - past client
     comandos:   
     cd client
+    npm i
     npm start
 
 pasta que contem os conteudos que iremos mexer: src

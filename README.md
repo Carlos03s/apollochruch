@@ -15,4 +15,3 @@ pasta que contem os conteudos que iremos mexer: src
 
 *** server ***
 - pasta do servidor: server
-

@@ -1,13 +1,15 @@
 import * as ReactDOM from 'react-dom';
 import Rotas from './Routes';
+import Cadastro from './cadastros/Cadastro';
 
 function render() {
     ReactDOM.render(
       <div>
         {/* <Rotas/> */}
-        <h1>fsadadsa</h1>
+        <Cadastro/>
       </div>, document.getElementById('root')!);
   }
   
   render();
+
   

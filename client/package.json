@@ -43,6 +43,10 @@
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
     "electron-squirrel-startup": "^1.0.0",
+    "file": "^0.2.2",
+    "file-loader": "^6.2.0",
+    "load": "^1.0.2",
+    "loader": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-iframe": "^1.8.5",

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import {NavContainer} from './container/CadastroContainer'
-import Header from './container/CadastroContainer'
+import HeaderContent from '../Components/Header/HeaderContent'
 
-export default function Header() {
+export default function Cadastro() {
     return (
-          <Header/>
+      <NavContainer>
+          <HeaderContent/>
+      </NavContainer>
     )
   }

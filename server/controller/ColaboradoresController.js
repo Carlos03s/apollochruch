@@ -1,13 +1,14 @@
 import db from '../db'
 
-class DoadoresControllers {
-    insertDoacao(req, resp) {
+class ColaboradoresController {
+    insertColaborador(req, resp) {
         const {
             nome,
             cpf,
             endereco,
             email,
-            telefone
+            telefone,
+            funcao
         } = req.body;
 
         if (!nome || !cpf || !endereco || !email || !telefone) {
@@ -15,10 +16,10 @@ class DoadoresControllers {
         }
 
         const sql = `
-        INSERT INTO doadores (nome, cpf, endereco, email, telefone)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO colaboradores (nome, cpf, endereco, email, telefone, funcao)
+        VALUES (?, ?, ?, ?, ?, ?)
         `
-        db.query(sql, [nome, cpf, endereco, email, telefone], function(err, result) {
+        db.query(sql, [nome, cpf, endereco, email, telefone, funcao], function(err, result) {
             if (err) throw err;
 
             return res.send(result)
@@ -27,4 +28,4 @@ class DoadoresControllers {
     }
 }
 
-module.exports = new DoadoresControllers()
+module.exports = new ColaboradoresController()

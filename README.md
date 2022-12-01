@@ -8,25 +8,28 @@
 
 # Sumário
 
-comandos docker 
-- docker start mysql
-- docker exec -it mysql bash
-- mysql -u root -p
-- docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=sql -d mysql
-
-
 - [Trabalhando no projeto](#install)
 - [Tecnologias utilizadas](#tecnologias)
   <!-- [License](#license) -->
 
 <hr>
-<div id="install">
+<div id="install"></div>
 Para iniciar o programa:
 
-```bash
+```node
     cd client
     npm i
     npm start
+```
+
+<div id="docker"></div>
+Comandos Docker
+
+```Docker
+- docker start mysql
+- docker exec -it mysql bash
+- mysql -u root -p
+- docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=sql -d mysql
 ```
 
 Para eventuais mudanças, a pasta [client/src](./client/src) contem os conteúdos das páginas.

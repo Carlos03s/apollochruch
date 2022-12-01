@@ -7,7 +7,7 @@ export default function HeaderContent() {
       <HeaderContainer>
         {/* <div className='imagem-logo'>
           <img src={require('../img/.png')} alt="" id=''></img>
-        </div> */}
+        </div> */} <h1>oi</h1>
       </HeaderContainer>
     )
   }

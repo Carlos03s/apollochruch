@@ -8,6 +8,13 @@
 
 # Sumário
 
+comandos docker 
+- docker start mysql
+- docker exec -it mysql bash
+- mysql -u root -p
+- docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=sql -d mysql
+
+
 - [Trabalhando no projeto](#install)
 - [Tecnologias utilizadas](#tecnologias)
   <!-- [License](#license) -->

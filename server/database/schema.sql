@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `apollo`.`historico_doacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `valor` FLOAT NOT NULL,
   `id_doadores` VARCHAR(255) NULL,
-  `data` DATE GENERATED ALWAYS AS () VIRTUAL,
+  `data` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `idhd_idx` (`id_doadores` ASC) VISIBLE,
   CONSTRAINT `idhd`

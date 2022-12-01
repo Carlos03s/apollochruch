@@ -28,4 +28,14 @@ export const rules: Required<ModuleOptions>['rules'] = [
       },
     },
   },
+  {
+    test: /\.(png|jpg|gif|mp4)$/,
+    use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          esModule: false
+        }
+    }]
+},
 ];

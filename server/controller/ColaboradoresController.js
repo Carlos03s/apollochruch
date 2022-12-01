@@ -5,21 +5,21 @@ class ColaboradoresController {
         const {
             nome,
             cpf,
-            endereco,
             email,
             telefone,
+            diaDisponivel,
             funcao
         } = req.body;
 
-        if (!nome || !cpf || !endereco || !email || !telefone) {
+        if (!nome || !cpf || !endereco || !email || !telefone || !diaDisponivel) {
             return res.status(404).send("Preencha todos os campos.")
         }
 
         const sql = `
-        INSERT INTO colaboradores (nome, cpf, endereco, email, telefone, funcao)
+        INSERT INTO colaboradores (nome, cpf, endereco, email, telefone, funcao, diaDisponivel)
         VALUES (?, ?, ?, ?, ?, ?)
         `
-        db.query(sql, [nome, cpf, endereco, email, telefone, funcao], function(err, result) {
+        db.query(sql, [nome, cpf, endereco, email, telefone, funcao, diaDisponivel], function(err, result) {
             if (err) throw err;
 
             return res.send(result)

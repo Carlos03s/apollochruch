@@ -66,6 +66,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Electron](https://www.electronjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org/)
+- [Docker](https://www.docker.com/)
 
 <!-----
 

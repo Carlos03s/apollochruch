@@ -65,6 +65,14 @@ export const MainContainer = styled.div`
   .table_container table tr td {
     padding: 7px 5px;
   }
+  .table_container .positive_value {
+    color: #30b700;
+    fill: #30b700;
+  }
+  .table_container .negative_value {
+    color: #cc0000;
+    fill: #cc0000;
+  }
   /* ----- SUMMARY TABLE ----- */
   .summary_wallet_table {
     min-height: 400px;
@@ -73,12 +81,18 @@ export const MainContainer = styled.div`
   .detailed_table {
     min-width: 743px;
   }
-  /* ----- DETAILED TABLE ----- */
+  /* ----- EXTRACT TABLE ----- */
+  .extract_table table tr:last-child {
+    border: none;
+  }
+  .extract_table table tr td:first-child {
+    font-weight: bold;
+  }
   .extract_table table tr td div {
     display: flex;
     align-items: center;
   }
-  .extract_table table tr td img {
+  .extract_table table tr td svg {
     margin-left: 6px;
   }
   /* ----- BUTTON IN THE END ----- */

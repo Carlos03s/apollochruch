@@ -8,7 +8,7 @@ function render() {
       <div>
         {/* <Rotas/> */}
         <Cadastro/>
-        {/* <Caixa/> */}
+        <Caixa/> 
       </div>, document.getElementById('root')!);
   }
   

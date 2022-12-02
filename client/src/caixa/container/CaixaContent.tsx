@@ -1,113 +1,100 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const MainContainer = styled.div`
-height  : 100%;
-width: 100%;
+  @font-face {
+    font-family: Inter;
+    src: url(../../assets/fonts/Inter-Medium.ttf);
+  }
 
-.tabela1{
-position: absolute;
-width: 360px;
-height: 534px;
-left: 50px;
-top: 95px;
-background: #E5EAEE;
-border-radius: 30px;
-}
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  overflow-x: hidden;
 
-h1{
-position: absolute;
-width: 175px;
-height: 27px;
-left: 17px;
-top: 17px;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 28px;
-}
+  * {
+    font-family: "Inter", Roboto, system-ui, -apple-system, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-#a{
-position: absolute;
-width: 125px;
-height: 25px;
-right: 20px;
-top: 18px;
-background: #C9D2DB;
-border-radius: 15px;
-}
+  .tables {
+    width: max(92%, 770px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+  }
 
-.tabela2{
-position: absolute;
-width: 853px;
-height: 534px;
-left: 428px;
-top: 95px;
-background: #E5EAEE;
-border-radius: 30px;
-}
+  .table_container {
+    min-width: 400px;
+    background: #e5eaee;
+    border-radius: 30px;
+    padding: 30px;
+  }
+  /* ----- DEFAULT HEAD ----- */
+  .table_container .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Roboto, system-ui, -apple-system, "Segoe UI", Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: clamp(1rem, 0.8239rem + 0.5634vw, 1.5rem);
+  }
 
-h2{
-position: absolute;
-width: 175px;
-height: 27px;
-left: 17px;
-top: 17px;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 28px;
-}
-
-.extrato{
-position: absolute;
-width: 360px;
-height: 169px;
-left: 50px;
-top: 656px;
-background: #E5EAEE;
-border-radius: 30px;
-}
-
-h3{
-position: absolute;
-width: 175px;
-height: 27px;
-left: 17px;
-top: 17px;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 28px;   
-}
-.adicionar{
-position: absolute;
-width: 275px;
-height: 52px;
-left: 41px;
-top: 456px;
-background: #C9D2DB;
-border-radius: 10px;
-border-color: #C9D2DB;
-}
-#b{
-position: absolute;
-width: 125px;
-height: 25px;
-right: 20px;
-top: 18px;
-background: #C9D2DB;
-border-radius: 15px;   
-}
-#c{
-position: absolute;
-width: 125px;
-height: 25px;
-right: 20px;
-top: 18px;
-background: #C9D2DB;
-border-radius: 15px; 
-}
-`
+  .table_container .head select {
+    padding: 5px 7px;
+    background: #c9d2db;
+    color: #62788b;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .table_container .head select:focus {
+    border-radius: 16px 16px 0 0;
+  }
+  /* ----- DEFAULT TABLE ----- */
+  .table_container table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table_container table tr {
+    border-bottom: 1px solid #444444;
+  }
+  .table_container table tr td {
+    padding: 7px 5px;
+  }
+  /* ----- SUMMARY TABLE ----- */
+  .summary_wallet_table {
+    min-height: 400px;
+  }
+  /* ----- DETAILED TABLE ----- */
+  .detailed_table {
+    min-width: 743px;
+  }
+  /* ----- DETAILED TABLE ----- */
+  .extract_table table tr td div {
+    display: flex;
+    align-items: center;
+  }
+  .extract_table table tr td img {
+    margin-left: 6px;
+  }
+  /* ----- BUTTON IN THE END ----- */
+  .table_container .add_button {
+    margin-top: 16px;
+    padding: 10px 7px;
+    width: 100%;
+    border-radius: 16px;
+    border: none;
+    background: #c9d2db;
+    color: #879fb5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .summary_wallet_table .add_button:is(:hover, :clicked) {
+    background: #879fb5;
+    color: #2a4864;
+  }
+`;

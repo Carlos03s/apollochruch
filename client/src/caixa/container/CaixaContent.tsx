@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-  @font-face {
-    font-family: Inter;
-    src: url(../../assets/fonts/Inter-Medium.ttf);
-  }
 
   display: grid;
   place-items: center;
   padding: 25px;
   overflow-x: hidden;
 
+  @font-face {
+    font-family: Inter;
+    src: url(../../assets/fonts/Inter-Medium.ttf);
+  }
+  
   * {
     font-family: "Inter", Roboto, system-ui, -apple-system, sans-serif;
     padding: 0;

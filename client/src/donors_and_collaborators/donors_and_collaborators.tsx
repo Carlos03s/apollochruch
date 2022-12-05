@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MainContainer } from "./container/donors_and_collaborators_design";
 
-export default function Caixa() {
+export default function Donors_and_collaborators() {
   return (
     <MainContainer>
       <div className="tables">

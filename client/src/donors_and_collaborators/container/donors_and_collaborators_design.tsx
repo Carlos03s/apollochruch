@@ -28,14 +28,17 @@ export const MainContainer = styled.div`
     gap: 20px;
   }
 
-  .table_container {
-    min-width: 400px;
+  .table_container_ {
+    min-width: 48%;
+    min-height: 70vh;
     background: #e5eaee;
     border-radius: 30px;
     padding: 30px;
+    /*TEMPORARIO*/
+    margin-top: 50px;
   }
   /* ----- DEFAULT HEAD ----- */
-  .table_container .head {
+  .table_container_ .head {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,77 +47,74 @@ export const MainContainer = styled.div`
     font-size: clamp(1rem, 0.8239rem + 0.5634vw, 1.5rem);
   }
 
-  .table_container .head select {
+  .table_container_ .head select {
     padding: 5px 7px;
     background: #c9d2db;
     color: #62788b;
     border-radius: 16px;
     transition: all 0.3s ease;
   }
-  .table_container .head select:focus {
+  .table_container_ .head select:focus {
     border-radius: 16px 16px 0 0;
   }
   /* ----- DEFAULT TABLE ----- */
-  .table_container table {
+  .table_container_ table {
     margin-top: 30px;
     width: 100%;
     border-collapse: collapse;
   }
-  .table_container table tr {
+  .table_container_ table tr {
     border-bottom: 1px solid #444444;
   }
-  .table_container table tr td {
+  .table_container_ table tr td {
     padding: 7px 5px;
   }
-  .table_container .positive_value {
-    color: #30b700;
-    fill: #30b700;
-  }
-  .table_container .negative_value {
-    color: #cc0000;
-    fill: #cc0000;
-  }
-  /* ----- SUMMARY TABLE ----- */
-  .summary_wallet_table {
-    min-height: 400px;
-  }
-  /* ----- DETAILED TABLE ----- */
-  .detailed_table {
-    min-width: 743px;
-  }
-  /* ----- EXTRACT TABLE ----- */
-  .extract_table table tr:last-child {
-    border: none;
-  }
-  .extract_table table tr td:first-child {
-    font-weight: bold;
-  }
-  .extract_table table tr td div {
-    display: flex;
-    align-items: center;
-  }
-  .extract_table table tr td svg {
-    margin-left: 6px;
-  }
-  /* ----- BUTTON IN THE END ----- */
-  .table_container .add_button {
-    margin-top: 16px;
-    padding: 10px 7px;
+
+  .table_container_ .search_container {
+    position: relative;
+    margin-top: 10px;
     width: 100%;
-    border-radius: 16px;
-    border: none;
-    background: #c9d2db;
-    color: #879fb5;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .summary_wallet_table .add_button:is(:hover, :clicked) {
-    background: #879fb5;
-    color: #2a4864;
   }
 
-  @media (max-width:1300px){
-    .tables{flex-direction: column}
-    .table_container{width: 100%}
+  .table_container_ .search_container svg {
+    height: 24px;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    fill: #8d8d8d;
+  }
+
+  .table_container_ .search_container input {
+    width: 100%;
+    height: 40px;
+    padding: 4px 4px 4px 36px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.725rem;
+    outline-color: #879fb5;
+  }
+
+  .table_container_ .more_options {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .table_container_ .more_options svg {
+    height: 24px;
+    fill: #242424;
+  }
+
+  @media (max-width: 1300px) {
+    .tables {
+      flex-direction: column;
+    }
+    .table_container {
+      width: 100%;
+    }
+    .table_container_ {
+      width: 100%;
+    }
   }
 `;

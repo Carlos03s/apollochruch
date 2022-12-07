@@ -1,82 +1,30 @@
-const db = require('../db')
+import db from '../db'
 
 class ColaboradoresController {
-    insertColaborador(req, res) {
+    insertColaborador(req, resp) {
         const {
             nome,
             cpf,
             email,
             telefone,
-            endereco,
+            diaDisponivel,
             funcao
         } = req.body;
 
-        if (!nome || !cpf || !email || !telefone || !endereco || !funcao) {
+        if (!nome || !cpf || !endereco || !email || !telefone || !diaDisponivel) {
             return res.status(404).send("Preencha todos os campos.")
         }
 
         const sql = `
-        INSERT INTO colaboradores (nome, cpf, email, telefone, funcao, endereco)
+        INSERT INTO colaboradores (nome, cpf, endereco, email, telefone, funcao, diaDisponivel)
         VALUES (?, ?, ?, ?, ?, ?)
         `
-        db.query(sql, [nome, cpf, email, telefone, funcao, endereco], function(err, result) {
+        db.query(sql, [nome, cpf, endereco, email, telefone, funcao, diaDisponivel], function(err, result) {
             if (err) throw err;
 
             return res.send(result)
         })
-    }
 
-    getColaboradores(req, res) {
-
-        const {
-            order
-        } = req.params
-
-        const sqlAsc = `
-        SELECT nome, cpf, email, telefone, funcao, endereco, id
-        FROM colaboradores
-        ORDER BY nome ASC
-        `
-
-        const sqlDesc = `
-        SELECT nome, cpf, email, telefone, funcao, endereco, id
-        FROM colaboradores
-        ORDER BY nome DESC
-        `
-
-        if (order == 'asc') {
-            db.query(sqlAsc, function(err, result) {
-                if (err) throw err;
-                return res.send(result)
-            })
-        } else {
-            db.query(sqlDesc, function(err, result) {
-                if (err) throw err;
-                return res.send(result)
-            })
-        }
-
-    }
-
-    deleteColaboradores(req, res) {
-
-        const {
-            id
-        } = req.body;
-
-        if (!id) {
-            return res.status(404).send('err')
-        }
-
-        const sql = `
-        DELETE FROM colaboradores
-        WHERE id=?
-        `
-
-        db.query(sql, [id], function(err, result) {
-            if (err) throw err;
-            return res.send(result); 
-        })
     }
 }
 

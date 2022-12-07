@@ -1,198 +1,76 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { MainContainer } from "./container/CaixaContent";
+import CaixaResumidoData from './components/CaixaResumidoData'
+import CaixaExtrato from './components/CaixaExtrato'
+import CaixaDetalhado from './components/CaixaDetalhado'
+import AddCaixa from '../modals/AddCaixa'
+import { handleAddCaixaModal } from '../store/SliceAddCaixa'
+import { RootState } from '../store/Store';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default function Caixa() {
+
+export default function CadastradosCaixa() {
+
+  const option = useSelector((state: RootState) => state.caixaOption.caixaModalOpen);
+  const [open, setOpen] = useState('')
+  const dispatch = useDispatch()
+  const [filter, setFilter] = useState<string>('day')
+
+  const handleSelectChange =  (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(event.target.value)
+}
+
+  const handleClick = () => {
+    dispatch(handleAddCaixaModal('true'))  }
+
+  useEffect(() => {
+    setOpen(option)
+  }, [option, open])
+
   return (
-    <MainContainer>
+    <> 
+        <MainContainer>
       <div className="tables">
         <div className="table_container summary_wallet_table">
           <div className="head">
             <p>Caixa resumido</p>
-            <select name="test" id="test">
-              <option value="day"> Últimos 1 dias</option>
-              <option value="week" selected>
+            <select name="test" id="test"
+            onChange={handleSelectChange}
+            >
+              <option value="day" selected> Últimos 1 dias</option>
+              <option value="week">
                 Últimos 7 dias
               </option>
               <option value="month"> Últimos 30 dias</option>
             </select>
           </div>
+          <div id="scroll-data">
+
           <table>
-            {/* ----- EXAMPLE TABLE DATA ----- */}
-              <tr>
-                <td>
-                  <p>Doação</p>
-                </td>
-                <td>
-                  <p>13:30</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Doação</p>
-                </td>
-                <td>
-                  <p>13:30</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Doação</p>
-                </td>
-                <td>
-                  <p>13:30</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Doação</p>
-                </td>
-                <td>
-                  <p>13:30</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
+            <CaixaResumidoData
+            day={filter}
+            />
           </table>
-          <button className="add_button" id="add_wallet_change"> <span>+</span> Adicionar novo caixa</button>
-        </div>
-        <div className="table_container detailed_table">
-        <div className="head">
-            <p>Caixa detalhado</p>
-            <select name="test" id="test">
-              <option value="day"> Últimos 1 dias</option>
-              <option value="week" selected>
-                Últimos 7 dias
-              </option>
-              <option value="month"> Últimos 30 dias</option>
-            </select>
           </div>
-          <table>
-            {/* ----- EXAMPLE TABLE DATA ----- */}
-              <tr>
-                <td>
-                  <p>Nome e sobrenome</p>
-                </td>
-                <td>
-                  <p>Descrição</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <p>R$ 13:30</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Nome e sobrenome</p>
-                </td>
-                <td>
-                  <p>Descrição</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <p>R$ 13:30</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Nome e sobrenome</p>
-                </td>
-                <td>
-                  <p>Descrição</p>
-                </td>
-                <td>
-                  <p>R$ 100,00</p>
-                </td>
-                <td>
-                  <p>R$ 13:30</p>
-                </td>
-                <td>
-                  <img src="../assets/icons/arrow-small-up.png"></img>
-                </td>
-              </tr>
-          </table>
+
+          <button className="add_button" id="add_wallet_change"
+          onClick={handleClick}
+          > <span>+</span> Adicionar novo caixa</button>
         </div>
-        <div className="table_container extract_table">
-        <div className="head">
-            <p>Extrato</p>
-            <select name="test" id="test">
-              <option value="day"> Últimos 1 dias</option>
-              <option value="week" selected>
-                Últimos 7 dias
-              </option>
-              <option value="month"> Últimos 30 dias</option>
-            </select>
-          </div>
-          <table>
-            {/* ----- EXAMPLE TABLE DATA ----- */}
-              <tr>
-                <td>
-                  <p>Total</p>
-                </td>
-                <td>
-                  <div>
-                    <p>R$ 100,00</p>
-                    <img src="../assets/icons/arrow-small-up.png"></img>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <p>R$ 100,00</p>
-                    <img src="../assets/icons/arrow-small-up.png"></img>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Total</p>
-                </td>
-                <td>
-                  <div>
-                    <p>R$ 100,00</p>
-                    <img src="../assets/icons/arrow-small-up.png"></img>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <p>R$ 100,00</p>
-                    <img src="../assets/icons/arrow-small-up.png"></img>
-                  </div>
-                </td>
-              </tr>
-          </table>
-        </div>
+        
+      <CaixaDetalhado
+      />
+
+      <CaixaExtrato/>
+
       </div>
     </MainContainer>
+
+    
+
+    { open == 'true' && <AddCaixa/> }
+
+
+    </>
   );
 }

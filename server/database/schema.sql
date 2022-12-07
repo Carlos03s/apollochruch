@@ -28,13 +28,12 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema apollo
 -- -----------------------------------------------------
-
+CREATE DATABASE IF NOT EXISTS `apollo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 -- -----------------------------------------------------
 -- Schema apollo
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `apollo` DEFAULT CHARACTER SET utf8 ;
 USE `apollo` ;
-
 -- -----------------------------------------------------
 -- Table `apollo`.`doadores`
 -- -----------------------------------------------------
@@ -52,22 +51,19 @@ CREATE TABLE IF NOT EXISTS `apollo`.`doadores` (
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `apollo`.`historico_doacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `apollo`.`historico_doacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `valor` FLOAT NOT NULL,
-  `id_doadores` VARCHAR(255) NULL,
+  `nome` VARCHAR(255) NULL,
   `data` VARCHAR(255) NULL,
+  `categoria` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `idhd_idx` (`id_doadores` ASC) VISIBLE,
+  INDEX `idhd_idx` (`nome` ASC) VISIBLE,
   CONSTRAINT `idhd`
-    FOREIGN KEY (`id_doadores`)
-    REFERENCES `apollo`.`doadores` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    FOREIGN KEY (`nome`) REFERENCES `apollo`.`doadores` (`nome`))
 ENGINE = InnoDB;
 
 
@@ -81,14 +77,13 @@ CREATE TABLE IF NOT EXISTS `apollo`.`colaboradores` (
   `email` VARCHAR(100) NOT NULL,
   `funcao` VARCHAR(50) NOT NULL,
   `telefone` VARCHAR(50) NOT NULL,
-  `diadisponivel` VARCHAR(100) NOT NULL,
+  `endereco` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE,
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  UNIQUE INDEX `funcao_UNIQUE` (`funcao` ASC) VISIBLE,
-  UNIQUE INDEX `telefone_UNIQUE` (`telefone` ASC) VISIBLE,
-  UNIQUE INDEX `diadisponivel_UNIQUE` (`diadisponivel` ASC) VISIBLE)
+  UNIQUE INDEX `telefone_UNIQUE` (`telefone` ASC) VISIBLE
+)
 ENGINE = InnoDB;
 
 
@@ -98,7 +93,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `apollo`.`contas_pagas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(100) NOT NULL,
-  `data_pagamento` DATE GENERATED ALWAYS AS () VIRTUAL,
+  `data_pagamento` VARCHAR(100) NOT NULL,
   `valor` FLOAT NOT NULL,
   `observacao` TEXT(999) NULL,
   PRIMARY KEY (`id`))
@@ -111,15 +106,40 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `apollo`.`historico_contas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `valor` FLOAT NOT NULL,
-  `data` DATE GENERATED ALWAYS AS () VIRTUAL,
-  `id_contas` INT NOT NULL,
+  `data` VARCHAR(100) NOT NULL,
+  `tipo` VARCHAR(100) NOT NULL,
+  `categoria` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`)
+  )
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `apollo`.`historico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `valor` FLOAT,
+  `data` VARCHAR(100),
+  `tipo` VARCHAR(100),
+  `categoria` VARCHAR(100),
+
+  `valorDoacao` FLOAT,
+  `nomeDoador` VARCHAR(255) NULL,
+  `dataDoacao` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
-  INDEX `id_contas_idx` (`id_contas` ASC) VISIBLE,
-  CONSTRAINT `id_contas`
-    FOREIGN KEY (`id_contas`)
-    REFERENCES `apollo`.`contas_pagas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    UNIQUE INDEX `nomeDoador_UNIQUE` (`nomeDoador` ASC) VISIBLE
+  )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `apollo`.`historico_doacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `apollo`.`historico_doacao` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `valor` FLOAT NOT NULL,
+  `nome` VARCHAR(255) NULL,
+  `data` VARCHAR(255) NULL,
+  `categoria` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`nome`) REFERENCES doadores(nome) ON UPDATE CASCADE
+)
 ENGINE = InnoDB;
 
 
